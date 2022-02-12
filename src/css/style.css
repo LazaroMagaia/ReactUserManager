@@ -1,0 +1,56 @@
+.home h1 
+{
+    text-transform: uppercase;
+}
+.navbar
+{
+    margin:10px 0;
+}
+nav ul 
+{
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+}
+nav ul li 
+{
+    margin:0 20px;
+}
+.login
+{
+    margin: 0 auto;
+    margin-top: 160px;
+    max-width: 600px;
+}
+.login h1
+{
+    text-transform: uppercase;
+}
+.register-control
+{
+    margin-top: 10px;
+    color:#000000;
+}
+.register-control:hover
+{
+    color:#000000;
+}
+.error-message
+{
+    color:red;
+    font-size: 0.9rem;
+}
+.Deletemodal
+{
+    width: 200px;
+    height: 90px;
+    background-color: red;
+    border:0;
+    position: absolute;
+    left: 50%;
+    color: #ffffff;
+}
+.Banner-principal
+{
+    margin:40px 0;
+}

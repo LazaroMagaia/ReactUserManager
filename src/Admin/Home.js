@@ -3,7 +3,10 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/AdminNav';
+//import { io } from "socket.io-client";
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+  const navigate = useNavigate();
   const PF="http://127.0.0.1:8000/uploads/";
   let Token = localStorage.getItem("AccessToken");
   let email = localStorage.getItem("email");

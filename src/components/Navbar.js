@@ -40,7 +40,7 @@ const Navbar = () => {
               </li>
               <li>
                 {
-                      user ? <button className='btn btn-primary' onClick={sair}>Sair</button>:""
+                      user ? <button className='btn btn-dark' onClick={sair}>Sair</button>:""
                 }
               </li>
           </ul>

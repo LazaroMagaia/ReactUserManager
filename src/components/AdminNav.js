@@ -19,7 +19,7 @@ const AdminNav = () => {
                   <Link to="/admin/create">cadastrar utilizador</Link>
               </li>
               <li>
-                  <button className='btn btn-primary' onClick={sair}>Sair</button>
+                  <button className='btn btn-dark' onClick={sair}>Sair</button>
               </li>
           </ul>
       </nav>

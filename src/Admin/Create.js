@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate} from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import Navbar from '../components/AdminNav';
+import { Store } from 'react-notifications-component';
 const Create = () => {
+    const navigate = useNavigate();
     let Token = localStorage.getItem("AccessToken");
     const [submit,setSubmit] = useState([]);
     const [file, setFile] = useState(null);
@@ -31,10 +34,35 @@ const Create = () => {
        })
         .then((response)=>{
             setSubmit(response.data.message);
-            console.log("registrado com sucesso");
+            Store.addNotification({
+                title: "Sucesso",
+                message: "Usuario registrado com sucesso",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  onScreen: true
+                }
+              });
+              navigate('/admin');
         })
         .catch((error)=>{
-            console.log(error);
+            Store.addNotification({
+                title: "Erro",
+                message: "O Usuario ja existe",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  onScreen: true
+                }
+              });
         });
     }
   return <div> <Navbar></Navbar>

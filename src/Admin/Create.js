@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate} from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,6 +8,7 @@ import Navbar from '../components/AdminNav';
 import { Store } from 'react-notifications-component';
 const Create = () => {
     const navigate = useNavigate();
+    let email = localStorage.getItem("email");
     let Token = localStorage.getItem("AccessToken");
     const [submit,setSubmit] = useState([]);
     const [file, setFile] = useState(null);
@@ -26,6 +27,7 @@ const Create = () => {
         photo.append("perfil_photo",filename);
         photo.append("file",file);
         data.perfil_photo = photo;*/
+        data.emailAdmin = email;
        axios.post("http://127.0.0.1:8000/api/user/register",data,{
         headers:{
             Authorization: 'Bearer ' + Token,

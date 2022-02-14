@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-
+import { Store } from 'react-notifications-component';
 
 const UserLogin = () => {
   const navigate = useNavigate();
@@ -26,7 +26,19 @@ const UserLogin = () => {
         navigate('/user/home');
     })
     .catch((error)=>{
-      console.log(error);
+      Store.addNotification({
+        title: "Erro",
+        message: "Crdenciais incorrectas",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
     });
 }
   return <div>

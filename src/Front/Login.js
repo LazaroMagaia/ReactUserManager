@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-
+import { Store } from 'react-notifications-component';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,7 +27,19 @@ const Login = () => {
         navigate('/admin');
     })
     .catch((error)=>{
-      console.log(error);
+      Store.addNotification({
+        title: "Erro",
+        message: "Crdenciais incorrectas",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          onScreen: true
+        }
+      });
     });
 }
   return <div>
@@ -49,7 +61,7 @@ const Login = () => {
                   </div>
                   <button type="submit" className="btn btn-primary">Entrar</button>
                 </form>
-                <Link to="/register" className='register-control'>já tem conta? Entre por aqui</Link>
+                <Link to="/register" className='register-control'>Não tem conta? crie aqui</Link>
           </div>
   </div>
 }

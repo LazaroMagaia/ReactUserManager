@@ -24,7 +24,6 @@ const Edit = () => {
         userdata();
     }, [])
     const onSubmit = data =>{
-        console.log(data);
        axios.put("http://127.0.0.1:8000/api/user/edit/"+id,data,{
         headers:{
             Authorization: 'Bearer ' + Token
@@ -71,10 +70,21 @@ const Edit = () => {
         })
         .then((response)=>{
             reset(response.data);
-            console.log(response.data);
         })
         .catch((error)=>{
-            console.log(error);
+            Store.addNotification({
+                title: "Erro",
+                message: "O usuario ja existe",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  onScreen: true
+                }
+              });
         });
     }
   return <div> <Navbar></Navbar>

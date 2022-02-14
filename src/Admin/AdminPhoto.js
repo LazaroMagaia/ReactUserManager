@@ -3,6 +3,7 @@ import Navbar from '../components/AdminNav';
 import axios from 'axios';
 import {useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Store } from 'react-notifications-component';
 const AdminPhoto = () => {
     const navigate = useNavigate();
     const [file,setFile] =useState();
@@ -26,9 +27,36 @@ const AdminPhoto = () => {
                   }
             })
             .then((e)=>{
-                console.log("registrado com sucesso");
+                Store.addNotification({
+                    title: "Sucesso",
+                    message: "Foto registrada com sucesso",
+                    type: "success",
+                    insert: "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                      duration: 5000,
+                      onScreen: true
+                    }
+                  });
+                  navigate('/admin');
             })
-            .catch((err)=>console.log(err))
+            .catch((err)=>{
+                Store.addNotification({
+                    title: "erro",
+                    message: "tentative de registrar foto sem sucesso",
+                    type: "danger",
+                    insert: "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                      duration: 5000,
+                      onScreen: true
+                    }
+                  });
+            })
         }catch(e){console.log(e)}
     }
   return (

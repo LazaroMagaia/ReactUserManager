@@ -24,14 +24,13 @@ const Home = () => {
         })
         .then((response)=>{
             setMe(response.data);
-            console.log(response.data);
         })
         .catch((error)=>{
             console.log(error);
         });
     }
     const allUser = () =>{
-        axios.get("http://127.0.0.1:8000/api/user/alluser",{
+        axios.get("http://127.0.0.1:8000/api/user/alluser/"+email,{
           headers:{
             Authorization: 'Bearer ' + Token,
           }
@@ -64,7 +63,7 @@ const Home = () => {
           me.map((me)=>(
             <div key={me.id}>
               <div>Nome da empresa: {
-              me.name_company 
+              me.name_company
               }</div>
               <div>
               {me.image_company ? (<div>
